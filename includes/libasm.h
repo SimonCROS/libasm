@@ -6,5 +6,6 @@
 /*** String utils *************************************************************/
 
 size_t	ft_strlen(const char *s);
+char	*ft_strcpy(char *__dst, const char *__src);
 
 #endif
