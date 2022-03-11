@@ -8,16 +8,16 @@ override INC		:= includes
 
 # Properties
 
-NAME				= libasm.a
+NAME			= libasm.a
 
 # Commands
 
-override AR       	:= ar rcs
+override AR		:= ar rcs
 
-override NASM       := nasm
-override SFLAGS     := -f macho64
+override NASM		:= nasm
+override SFLAGS		:= -f macho64
 
-override CC			:= gcc
+override CC		:= gcc
 override CFLAGS		:= 
 override INCLUDES	:= -I$(INC)
 
@@ -25,9 +25,9 @@ override RM			:= rm -rf
 
 # Sources
 
-override SRCS		:=									\
-				ft_strcpy.s                             \
-				ft_strlen.s								\
+override SRCS		:=			\
+				ft_strcpy.s	\
+				ft_strlen.s	\
 
 override OBJS		:= $(addprefix $(BIN)/, $(SRCS:.s=.o))
 
