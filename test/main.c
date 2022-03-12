@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #include "libasm.h"
 
@@ -54,6 +55,43 @@ int	main(void)
 		free(sr2);
 		free(mr1);
 		free(mr2);
+	}
+	{
+		const char str[12] = "Hello World!";
+		ssize_t ret;
+
+		errno = 0;
+		ret = write(1, str, -1);
+		printf(" | %zd | %d\n", ret, errno);
+		errno = 0;
+		ret = ft_write(1, str, -1);
+		printf(" | %zd | %d\n", ret, errno);
+
+		errno = 0;
+		ret = write(1, str, sizeof(str));
+		printf(" | %zd | %d\n", ret, errno);
+		errno = 0;
+		ret = ft_write(1, str, sizeof(str));
+		printf(" | %zd | %d\n", ret, errno);
+	}
+	{
+		char str[6];
+		str[sizeof(str) - 1] = 0;
+		ssize_t ret;
+
+		errno = 0;
+		ret = read(1, str, -1);
+		printf("%zd | %d\n", ret, errno);
+		errno = 0;
+		ret = ft_read(1, str, -1);
+		printf("%zd | %d\n", ret, errno);
+
+		errno = 0;
+		ret = read(1, str, sizeof(str) - 1);
+		printf("%s | %zd | %d\n", str, ret, errno);
+		errno = 0;
+		ret = ft_read(1, str, sizeof(str) - 1);
+		printf("%s | %zd | %d\n", str, ret, errno);
 	}
 	return (0);
 }
