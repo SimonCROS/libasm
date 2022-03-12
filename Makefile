@@ -28,6 +28,7 @@ override RM			:= rm -rf
 override SRCS		:=			\
 				ft_strcpy.s	\
 				ft_strlen.s	\
+				ft_strcmp.s	\
 
 override OBJS		:= $(addprefix $(BIN)/, $(SRCS:.s=.o))
 

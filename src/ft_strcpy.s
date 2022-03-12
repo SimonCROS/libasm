@@ -4,14 +4,13 @@ section .text
 _ft_strcpy:
 	push	rbp
 	mov	rbp, rsp
-	mov	rax, rdi
-	mov	rcx, -1
+	mov	rax, rdi		; store dst for return
+	mov	rcx, -1			; i = -1
 L1:
-	mov	r8b, [rsi + rcx]
-	mov	[rdi + rcx], r8b
-	inc	rcx
-	cmp	byte [rsi + rcx], 0
-	jne	L1
-	mov	byte [rdi + rcx], 0
+	inc	rcx			; i++
+	mov	r8b, [rsi + rcx]	; tmp = src[i]
+	mov	[rdi + rcx], r8b	; dst[i] = tmp
+	cmp	byte [rsi + rcx], 0	; src[i] == 0
+	jne	L1			; if not equal, jump to L1
 	pop	rbp
 	ret
