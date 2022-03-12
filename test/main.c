@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "libasm.h"
@@ -37,6 +38,22 @@ int	main(void)
 
 		printf("%d %d %d %d %d %d %d\n", strcmp(s5, s5), strcmp(s5, s1), strcmp(base, s1), strcmp(base, s2), strcmp(base, s3), strcmp(base, s4), strcmp(base, s5));
 		printf("%d %d %d %d %d %d %d\n", ft_strcmp(s5, s5), ft_strcmp(s5, s1), ft_strcmp(base, s1), ft_strcmp(base, s2), ft_strcmp(base, s3), ft_strcmp(base, s4), ft_strcmp(base, s5));
+	}
+	{
+		char *s1 = "Hello World!";
+		char *s2 = "";
+
+		char *sr1 = strdup(s1);
+		char *sr2 = strdup(s2);
+		char *mr1 = ft_strdup(s1);
+		char *mr2 = ft_strdup(s2);
+		printf("%s | `%s'\n", sr1, sr2);
+		printf("%s | `%s'\n", mr1, mr2);
+
+		free(sr1);
+		free(sr2);
+		free(mr1);
+		free(mr2);
 	}
 	return (0);
 }
