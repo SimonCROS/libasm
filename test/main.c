@@ -94,13 +94,17 @@ int	main(void)
 	// 	printf("%s | %zd | %d\n", str, ret, errno);
 	// }
 	{
-		printf("%d ", ft_atoi_base("   \r\n\t-+++-+-+fg", "0123456789abcdef"));
-		// printf("%d ", ft_atoi_base("-2", "01234567 89abcde"));
-		// printf("%d ", ft_atoi_base("-2", "01234567+89abcde"));
-		// printf("%d ", ft_atoi_base("-2", "01234567889abcde"));
+		printf("%d ", ft_atoi_base("2a", "0123456789abcdef"));
 		printf("%d ", ft_atoi_base("011", "01"));
-		// printf("%d ", ft_atoi_base("-2", "0"));
-		// printf("%d ", ft_atoi_base("-2", ""));
+		printf("%d ", ft_atoi_base("", "0123456789"));
+		printf("%d ", ft_atoi_base(" \v\t--+-4242", "0123456789"));
+		printf("%d ", ft_atoi_base("  \t--+--4242", "0123456789"));
+		printf("\n");
+		printf("%d ", ft_atoi_base("", "01234567 89abcde"));
+		printf("%d ", ft_atoi_base("", "01234567+89abcde"));
+		printf("%d ", ft_atoi_base("", "01234567889abcde"));
+		printf("%d ", ft_atoi_base("", "0"));
+		printf("%d ", ft_atoi_base("", ""));
 		printf("\n");
 	}
 	return (0);

@@ -32,6 +32,7 @@ override SRCS		:=			\
 				ft_write.s	\
 				ft_read.s	\
 				ft_strdup.s	\
+				ft_atoi_base_bonus.s	\
 
 override OBJS		:= $(addprefix $(BIN)/, $(SRCS:.s=.o))
 
