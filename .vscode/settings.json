@@ -2,6 +2,9 @@
 	"editor.tabSize": 8,
 	"editor.insertSpaces": false,
 	"files.associations": {
-		"libasm.h": "c"
+		"libasm.h": "c",
+		"algorithm": "c",
+		"random": "c",
+		"complex": "c"
 	}
 }

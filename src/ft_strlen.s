@@ -5,9 +5,9 @@ _ft_strlen:
 	push	rbp
 	mov	rbp, rsp
 	mov	rax, -1			; i = -1
-L1:
+.while:
 	inc	rax			; i++
 	cmp	byte [rdi + rax], 0	; i == 0
-	jne	L1			; if not equal, jump to L1
+	jne	.while			; if not equal, jump to .while
 	pop	rbp
 	ret

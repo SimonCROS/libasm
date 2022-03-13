@@ -13,10 +13,10 @@ _ft_strdup:
 	mov	rdi, rax		;# first argument = len
 	call	_malloc			;# ret = malloc(len)
 	test	rax, rax		;# (ret & ret) == 0 (NULL)
-	je	L1			;# if equal, jump to L1
+	je	.end			;# if equal, jump to .end
 	mov	rdi, rax		;# first argument = ret
 	pop	rsi			;# second argument = s1 (from stack)
 	call	_ft_strcpy		;# ret = ft_strcpy(ret, s1)
-L1:
+.end:
 	pop	rbp
 	ret
