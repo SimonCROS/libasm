@@ -51,7 +51,7 @@ _ft_atoi_base:
 	cmp	rax, -1
 	jne	.error
 
-	jmp	.base		; else loop
+	jmp	.base			; else loop
 .main:
 	mov	r10, 1
 .spaces:
@@ -70,11 +70,11 @@ _ft_atoi_base:
 	lea	rsi, [rel symbols]
 	call	_index_of
 	cmp	rax, -1
-	je	.numbers		; if current char it not a space, jump to .symbols
+	je	.numbers		; if current char it not a aymbol, jump to .numbers
 	inc	r8
 	cmp	rax, 1
 	jne	.symbols
-	imul	r10, -1
+	imul	r10, -1			; if symbol is a minus, invert the sign (r10)
 	jmp	.symbols
 .numbers:
 	xor	rdx, rdx
