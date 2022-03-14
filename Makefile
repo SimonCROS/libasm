@@ -15,7 +15,7 @@ NAME			= libasm.a
 override AR		:= ar rcs
 
 override NASM		:= nasm
-override SFLAGS		:= -f macho64 -g
+override SFLAGS		:= -f macho64
 
 override CC		:= gcc
 override CFLAGS		:= 
