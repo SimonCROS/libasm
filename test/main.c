@@ -8,6 +8,7 @@
 void	print_list(t_list *front) {
 	t_list *current = front;
 
+	printf("size : %d | ", ft_list_size(front));
 	while (current) {
 		printf("`%s', ", (char *)current->data);
 		current = current->next;
@@ -130,6 +131,8 @@ int	main(void)
 		char *four = "4";
 
 		// - list push front -
+
+		print_list(base);
 
 		ft_list_push_front(&base, one);
 		print_list(base);
