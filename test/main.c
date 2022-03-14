@@ -120,17 +120,13 @@ int	main(void)
 	// 	printf("\n");
 	// }
 	{
-		// ---- init list ----
 		t_list *base;
 		base = NULL;
-		// -------------------
 
 		char *one = "1";
 		char *two = "2";
 		char *three = "3";
 		char *four = "4";
-
-		// - list push front -
 
 		print_list(base);
 
@@ -139,10 +135,6 @@ int	main(void)
 
 		ft_list_push_front(&base, two);
 		print_list(base);
-
-		// - list size       -
-		// - list sort       -
-		// - list remove if  -
 	}
 	return (0);
 }
