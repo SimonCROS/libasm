@@ -123,6 +123,7 @@ int	main(void)
 		t_list *base;
 		base = NULL;
 
+		char *zero = "0";
 		char *one = "1";
 		char *two = "2";
 		char *three = "3";
@@ -134,6 +135,18 @@ int	main(void)
 		print_list(base);
 
 		ft_list_push_front(&base, two);
+		print_list(base);
+
+		ft_list_push_front(&base, four);
+		print_list(base);
+
+		ft_list_push_front(&base, three);
+		print_list(base);
+
+		ft_list_push_front(&base, zero);
+		print_list(base);
+
+		ft_list_sort(&base, ft_strcmp);
 		print_list(base);
 	}
 	return (0);
