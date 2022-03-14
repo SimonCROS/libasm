@@ -46,9 +46,9 @@ int	main(void)
 
 		char *sr1 = strdup(s1);
 		char *sr2 = strdup(s2);
+		printf("%s | `%s'\n", sr1, sr2);
 		char *mr1 = ft_strdup(s1);
 		char *mr2 = ft_strdup(s2);
-		printf("%s | `%s'\n", sr1, sr2);
 		printf("%s | `%s'\n", mr1, mr2);
 
 		free(sr1);
@@ -80,18 +80,18 @@ int	main(void)
 		ssize_t ret;
 
 		errno = 0;
-		ret = read(1, str, -1);
+		ret = read(0, str, -1);
 		printf("%zd | %d\n", ret, errno);
 		errno = 0;
-		ret = ft_read(1, str, -1);
+		ret = ft_read(0, str, -1);
 		printf("%zd | %d\n", ret, errno);
 
 		printf("Enter 10 characters:\033[31m\n");
 		errno = 0;
-		ret = read(1, str, sizeof(str) - 1);
+		ret = read(0, str, sizeof(str) - 1);
 		printf("\033[0m%s | %zd | %d\n", str, ret, errno);
 		errno = 0;
-		ret = ft_read(1, str, sizeof(str) - 1);
+		ret = ft_read(0, str, sizeof(str) - 1);
 		printf("%s | %zd | %d\n", str, ret, errno);
 	}
 	{
@@ -101,11 +101,11 @@ int	main(void)
 		printf("%d ", ft_atoi_base(" \v\t--+-4242", "0123456789"));
 		printf("%d ", ft_atoi_base("  \t--+--4242", "0123456789"));
 		printf("\n");
-		printf("%d ", ft_atoi_base("", "01234567 89abcde"));
-		printf("%d ", ft_atoi_base("", "01234567+89abcde"));
-		printf("%d ", ft_atoi_base("", "01234567889abcde"));
-		printf("%d ", ft_atoi_base("", "0"));
-		printf("%d ", ft_atoi_base("", ""));
+		printf("%d ", ft_atoi_base("42", "01234567 89abcde"));
+		printf("%d ", ft_atoi_base("42", "01234567+89abcde"));
+		printf("%d ", ft_atoi_base("42", "01234567889abcde"));
+		printf("%d ", ft_atoi_base("42", "0"));
+		printf("%d ", ft_atoi_base("42", ""));
 		printf("\n");
 	}
 	return (0);
