@@ -11,16 +11,16 @@ _index_of:
 	push	rbp
 	mov	rbp, rsp
 	mov	rax, -1			; i = -1
-LIWHILE:
+.while:
 	inc	rax			; i++
 	cmp	byte [rsi + rax], 0	; stri[i] == 0
-	je	LINOTFOUND		; if equal, jump
+	je	.not_found		; if equal, jump
 	cmp	byte [rsi + rax], dil	; stri[i] == char
-	jne	LIWHILE			; return -1 if not found
-	jmp	LIEND
-LINOTFOUND:
+	jne	.while			; return -1 if not found
+	jmp	.end
+.not_found:
 	mov	rax, -1
-LIEND:
+.end:
 	pop	rbp
 	ret
 
@@ -34,68 +34,67 @@ _ft_atoi_base:
 	call	_ft_strlen
 	mov	r9, rax
 	cmp	r9, 1			; base[0] == '\0'
-	jbe	LERROR			; if equal or below, jump to LERROR
-LCHECKBASE:
+	jbe	.error			; if equal or below, jump to .error
+.base:
 	mov	dil, [rdx]		; rdi = *base
 	cmp	dil, 0			; rdi == '\0'
-	je	LATOI			; if equal, jump to LATOI
+	je	.main			; if equal, jump to .main
 	inc	rdx			; base++
 
 	lea	rsi, [rel invalid]
 	call	_index_of		; if char is whitespace or sign
 	cmp	rax, -1
-	jne	LERROR
+	jne	.error
 
 	lea	rsi, [rdx]
 	call	_index_of		; if the current char appears twice
 	cmp	rax, -1
-	jne	LERROR
+	jne	.error
 
-	jmp	LCHECKBASE		; else loop
-LATOI:
+	jmp	.base		; else loop
+.main:
 	mov	r10, 1
-LSKIPSPACES:
+.spaces:
 	mov	dil, [r8]
 
 	lea	rsi, [rel spaces]
 	call	_index_of
 	cmp	rax, -1
-	je	LPARSESYMS		; if current char it not a space, jump to LPARSESYMS
+	je	.symbols		; if current char it not a space, jump to .symbols
 
 	inc	r8
-	jmp	LSKIPSPACES
-LPARSESYMS:
+	jmp	.spaces
+.symbols:
 	mov	dil, [r8]
 
 	lea	rsi, [rel symbols]
 	call	_index_of
 	cmp	rax, -1
-	je	LPARSENUMS		; if current char it not a space, jump to LPARSESYMS
+	je	.numbers		; if current char it not a space, jump to .symbols
 	inc	r8
 	cmp	rax, 1
-	jne	LPARSESYMS
+	jne	.symbols
 	imul	r10, -1
-	jmp	LPARSESYMS
-LPARSENUMS:
+	jmp	.symbols
+.numbers:
 	xor	rdx, rdx
 	mov	rsi, r11
-hey:
-LATOILOOP:
+.numbers_loop:
 	mov	dil, [r8]
 
 	call	_index_of
 	cmp	rax, -1
-	je	LATOIEND		; if current char it not a space, jump to LPARSESYMS
+	je	.finished		; if current char it not a space, jump to .symbols
 	inc	r8
 	imul	rdx, r9
 	imul	rax, r10
 	add	rdx, rax
-	jmp	LATOILOOP
-LATOIEND:
+	jmp	.numbers_loop
+.finished:
 	mov	rax, rdx
-	jmp	LEND
-LERROR:
+	jmp	.end
+.error:
 	mov	rax, 0
-LEND:
+.end:
 	pop	rbp
 	ret
