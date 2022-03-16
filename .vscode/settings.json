@@ -1,4 +1,9 @@
 {
 	"editor.tabSize": 8,
-	"editor.insertSpaces": false
+	"editor.insertSpaces": false,
+	"files.associations": {
+		"libasm.h": "c",
+		"atomic": "c",
+		"bitset": "c"
+	}
 }
