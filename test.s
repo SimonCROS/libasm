@@ -1,5 +1,5 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 12, 0	sdk_version 12, 1
+	.build_version macos, 12, 0	sdk_version 12, 3
 	.intel_syntax noprefix
 	.globl	_a                              ## -- Begin function a
 	.p2align	4, 0x90

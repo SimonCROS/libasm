@@ -30,14 +30,14 @@ _ft_list_sort:
 	push	rcx			; save rcx before call
 	call	r14			; cmp(rdi, rsi)
 	pop	rcx			; restore rcx
-	cmp	eax, 0
-	jle	.all
-	mov	rdx, [rcx]
+	cmp	eax, 0			; if result <= 0
+	jle	.all			; loop
+	mov	rdx, [rcx]		; [rcx] = [r15] and [r15] = [rcx]
 	mov	rax, [r15]
 	mov	[rcx], rax
 	mov	[r15], rdx
 	mov	r12, 1			; updated = 1
-	jmp	.all
+	jmp	.all			; loop
 .end:
 	pop	r15
 	pop	r14

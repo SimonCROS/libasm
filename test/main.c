@@ -148,6 +148,9 @@ int	main(void)
 
 		ft_list_sort(&base, ft_strcmp);
 		print_list(base);
+
+		ft_list_remove_if(&base, "3", ft_strcmp, NULL);
+		print_list(base);
 	}
 	return (0);
 }

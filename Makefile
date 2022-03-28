@@ -1,4 +1,4 @@
-LINUX				:= 0
+LINUX			:= 0
 
 # Folders
 
@@ -21,7 +21,7 @@ override CC		:= gcc
 override CFLAGS		:= 
 override INCLUDES	:= -I$(INC)
 
-override RM			:= rm -rf
+override RM		:= rm -rf
 
 # Sources
 
@@ -36,7 +36,7 @@ override SRCS		:=			\
 				ft_list_push_front_bonus.s	\
 				ft_list_size_bonus.s		\
 				ft_list_sort_bonus.s		\
-				ft_list_remove_if_bonus.s	\
+				# ft_list_remove_if_bonus.s	\
 
 override OBJS		:= $(addprefix $(BIN)/, $(SRCS:.s=.o))
 
@@ -44,7 +44,7 @@ all:		$(NAME)
 
 $(BIN)/%.o:	$(SRC)/%.s includes/libasm.h
 			@mkdir -p $(dir $@);
-			$(NASM) $(SFLAGS) $< -o $@
+			$(NASM) $(SFLAGS) -o $@ $<
 
 $(NAME):	$(OBJS)
 			ar rcs $@ $(OBJS)

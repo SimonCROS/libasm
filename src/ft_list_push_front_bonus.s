@@ -10,8 +10,8 @@ _ft_list_push_front:
 	mov	r12, rdi		; save begin_list before malloc
 	mov	r13, rsi		; save data before malloc
 
-	mov	rdi, 16			; begin_list = 16
-	call	_malloc			; malloc(16)
+	mov	rdi, 16			; size = 16
+	call	_malloc			; malloc(size)
 	test	rax, rax
 	je	.end			; if malloc fails, jump to end
 
