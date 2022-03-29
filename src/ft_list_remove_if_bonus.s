@@ -1,72 +1,48 @@
-;#section .text
-;#	global _ft_list_remove_if
-;#
-;#_ft_list_remove_if:
-;#	push	rbp
-;#	mov	rbp, rsp
-;#	push	r12
-;#	push	r13
-;#	mov	r12, rdi		; begin_list = rdi
-;#.while:
-;#	cmp	 ptr [r12], 0		; *begin_list == NULL
-;#	je	.end			; if equal, jump to end
-;#	mov	r13, [r12]		; elem = *begin_list
-;#	mov	rdi, [r13]		; rdi = elem->data
-;#	call	rdx			; cmp(rdi, rsi)
-;#	; TODO
-;#	mov	r13, [r12]		; elem = *begin_list
-;#	mov	r8, [r13 + 8]		; tmp = (*begin_list)->next
-;#	mov	[r12], r8		; *begin_list = tmp
-;#	jmp	.while			; loop
-;#.end:
-;#	pop	r13
-;#	pop	r12
-;#	pop	rbp
-;#	ret
-;#
-
-	.section	__TEXT,__text,regular,pure_instructions
-	.globl		_ft_list_remove_if
+section .text
+	global _ft_list_remove_if
+	extern _free
 
 _ft_list_remove_if:
 	push	rbp
 	mov	rbp, rsp
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	push	[rdi]
-	mov	r12, rdi		;# begin_list = rdi
-	mov	r14, rdx		;# cmp = rdx
-	mov	r15, rcx		;# free = rcx
-	mov	r8, [r12]		;# tmp = *begin_list
-LBB0_3:
-	mov	[r12], r8		;# *begin_list = tmp
-	cmp	qword ptr [r12], 0	;# *begin_list == NULL
-	je	LBB0_4			;# if equal, jump to end
-	mov	r13, [r12]		;# elem = *begin_list
-	mov	rdi, [r13]		;# rdi = elem->data
-	push	rsi			;# save rsi
-	call	r14			;# cmp(rdi, rsi)
-	pop	rsi			;# restore rsi
-	mov	r13, [r12]		;# elem = *begin_list
-	mov	r8, [r13 + 8]		;# tmp = (*begin_list)->next
-	test	rax, rax		;# if rdi != rsi (using cmp)
-	jne	LBB0_3			;# continue
-	push	[r13]			;# push elem.data
-	mov	rdi, r13		;# rdi = elem
-	call	free			;# free(rdi)
-	mov	r12, r8 ;# TODO
-	pop	rdi			;# restore elem.data
-	test	r15, r15		;# if free_ptr == NULL
-
-	jmp	LBB0_3			;# loop
-LBB0_4:
-	pop	r8
+	push	rbx			;# t_list *elem;
+	push	r12			;# t_list **begin_list;
+	push	r13			;# void *data_ref;
+	push	r14			;# int (*cmp)();
+	push	r15			;# void (*free_fct)(void *);
+	sub	rsp, 8
+	mov	r12, rdi
+	mov	r13, rsi
+	mov	r14, rdx
+	mov	r15, rcx
+LBB0_0:					;# while ((elem = *begin_list)) {
+	mov	rbx, [r12]
+	test	rbx, rbx
+	je	LBB0_4
+	mov	rdi, [rbx]		;# 	if (cmp(elem->data, data_ref) == 0) {
+	mov	rsi, r13
+	call	r14
+	test	rax, rax
+	jne	LBB0_1
+	test	r15, r15		;# 		if (free_fct)
+	je	LBB0_2
+	mov	rdi, [rbx]		;# 			free_fct(elem->data);
+	call	r15
+LBB0_2:
+	mov	r8, [rbx + 8]	 	;# 		*begin_list = elem->next;
 	mov	[r12], r8
+	mov	rdi, rbx		;# 		free(elem);
+	call	_free
+	jmp	LBB0_0			;# 		continue;
+LBB0_1:					;# 	}
+	lea	r12, [rbx + 8]		;# 	begin_list = &elem->next;
+	jmp	LBB0_0
+LBB0_4:					;# }
+	add	rsp, 8
 	pop	r15
 	pop	r14
 	pop	r13
 	pop	r12
+	pop	rbx
 	pop	rbp
 	ret
