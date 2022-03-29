@@ -16,6 +16,10 @@ void	print_list(t_list *front) {
 	printf("0x0\n");
 }
 
+int	always_zero() {
+	return 0;
+}
+
 int	main(void)
 {
 	// {
@@ -146,10 +150,19 @@ int	main(void)
 		ft_list_push_front(&base, zero);
 		print_list(base);
 
+		ft_list_push_front(&base, ft_strdup("tofree"));
+		print_list(base);
+
 		ft_list_sort(&base, ft_strcmp);
 		print_list(base);
 
 		ft_list_remove_if(&base, "3", ft_strcmp, NULL);
+		print_list(base);
+
+		ft_list_remove_if(&base, "tofree", ft_strcmp, free);
+		print_list(base);
+
+		ft_list_remove_if(&base, "", always_zero, NULL);
 		print_list(base);
 	}
 	return (0);
