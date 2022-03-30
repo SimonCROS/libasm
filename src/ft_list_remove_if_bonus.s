@@ -15,29 +15,29 @@ _ft_list_remove_if:
 	mov	r13, rsi
 	mov	r14, rdx
 	mov	r15, rcx
-LBB0_0:					;# while ((elem = *begin_list)) {
+.while:					;# while ((elem = *begin_list)) {
 	mov	rbx, [r12]
 	test	rbx, rbx
-	je	LBB0_4
+	je	.end
 	mov	rdi, [rbx]		;# 	if (cmp(elem->data, data_ref) == 0) {
 	mov	rsi, r13
 	call	r14
 	test	rax, rax
-	jne	LBB0_1
+	jne	.next
 	test	r15, r15		;# 		if (free_fct)
-	je	LBB0_2
+	je	.remove
 	mov	rdi, [rbx]		;# 			free_fct(elem->data);
 	call	r15
-LBB0_2:
+.remove:
 	mov	r8, [rbx + 8]	 	;# 		*begin_list = elem->next;
 	mov	[r12], r8
 	mov	rdi, rbx		;# 		free(elem);
 	call	_free
-	jmp	LBB0_0			;# 		continue;
-LBB0_1:					;# 	}
+	jmp	.while			;# 		continue;
+.next:					;# 	}
 	lea	r12, [rbx + 8]		;# 	begin_list = &elem->next;
-	jmp	LBB0_0
-LBB0_4:					;# }
+	jmp	.while
+.end:					;# }
 	add	rsp, 8
 	pop	r15
 	pop	r14
