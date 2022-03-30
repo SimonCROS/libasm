@@ -1,5 +1,6 @@
 section .text
 	global _ft_list_sort
+	extern _free
 
 _ft_list_sort:
 	push	rbp
@@ -8,6 +9,7 @@ _ft_list_sort:
 	push	r13
 	push	r14
 	push	r15
+	sub	rsp, 8
 
 	cmp	qword [rdi], 0		; *begin_list == NULL
 	je	.end			; jump to end if list is empty
@@ -39,6 +41,7 @@ _ft_list_sort:
 	mov	r12, 1			; updated = 1
 	jmp	.all			; loop
 .end:
+	add	rsp, 8
 	pop	r15
 	pop	r14
 	pop	r13
