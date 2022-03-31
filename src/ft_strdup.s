@@ -8,9 +8,9 @@ _ft_strdup:
 	push	rbp
 	mov	rbp, rsp
 	push	rdi			;# save s1 in the stack
+	sub	rsp, 8
 	call	_ft_strlen		;# len = ft_strlen(s1)
 	inc	rax			;# len++ ('\0')
-	sub	rsp, 8
 	mov	rdi, rax		;# first argument = len
 	call	_malloc			;# ret = malloc(len)
 	test	rax, rax		;# (ret & ret) == 0 (NULL)
