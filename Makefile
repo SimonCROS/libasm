@@ -42,7 +42,7 @@ override OBJS		:= $(addprefix $(BIN)/, $(SRCS:.s=.o))
 
 all:		$(NAME)
 
-$(BIN)/%.o:	$(SRC)/%.s includes/libasm.h
+$(BIN)/%.o:	$(SRC)/%.s $(INC)/libasm.h
 			@mkdir -p $(dir $@);
 			$(NASM) $(SFLAGS) -o $@ $<
 
