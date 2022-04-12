@@ -4,6 +4,7 @@
 	"files.associations": {
 		"libasm.h": "c",
 		"atomic": "c",
-		"bitset": "c"
+		"bitset": "c",
+		"string.h": "c"
 	}
 }
