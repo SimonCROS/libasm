@@ -49,8 +49,8 @@ int	main(void)
 		char *s4 = "Hello!";
 		char *s5 = "";
 
-		printf("%d %d %d %d %d %d %d\n",    strcmp(s5, s5),    strcmp(s5, s1),    strcmp(base, s1),    strcmp(base, s2),    strcmp(base, s3),    strcmp(base, s4),    strcmp(base, s5));
-		printf("%d %d %d %d %d %d %d\n", ft_strcmp(s5, s5), ft_strcmp(s5, s1), ft_strcmp(base, s1), ft_strcmp(base, s2), ft_strcmp(base, s3), ft_strcmp(base, s4), ft_strcmp(base, s5));
+		printf("%+4d %+4d %+4d %+4d %+4d %+4d %+4d\n",    strcmp(s5, s5),    strcmp(s5, s1),    strcmp(base, s1),    strcmp(base, s2),    strcmp(base, s3),    strcmp(base, s4),    strcmp(base, s5));
+		printf("%+4d %+4d %+4d %+4d %+4d %+4d %+4d\n", ft_strcmp(s5, s5), ft_strcmp(s5, s1), ft_strcmp(base, s1), ft_strcmp(base, s2), ft_strcmp(base, s3), ft_strcmp(base, s4), ft_strcmp(base, s5));
 	}
 	{
 		char *s1 = "Hello World!";
