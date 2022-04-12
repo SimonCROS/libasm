@@ -6,6 +6,7 @@ section .data
 section .text
 	global _ft_atoi_base
 	extern _ft_strlen
+	extern _malloc
 
 _index_of:
 	push	rbp
